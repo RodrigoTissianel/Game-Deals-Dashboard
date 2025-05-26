@@ -2,6 +2,8 @@ import type { IDeals } from '@/@types/deals';
 import type { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '../ui/datatable';
 import type { IDealsDataTableProps } from '@/@types/DealsDataTable';
+import { Button } from '../ui/button';
+import { ArrowUpDown } from 'lucide-react';
 
 const columns: ColumnDef<IDeals>[] = [
     {
@@ -10,24 +12,72 @@ const columns: ColumnDef<IDeals>[] = [
     },
     {
         accessorKey: 'salePrice',
-        header: 'Preço atual',
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === 'asc')
+                    }
+                >
+                    Preço atual
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
         cell: ({ row }) =>
             `$${parseFloat(row.getValue('salePrice')).toFixed(2)}`,
     },
     {
         accessorKey: 'normalPrice',
-        header: 'Preço original',
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === 'asc')
+                    }
+                >
+                    Preço original
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
         cell: ({ row }) =>
             `$${parseFloat(row.getValue('salePrice')).toFixed(2)}`,
     },
     {
         accessorKey: 'savings',
-        header: 'Desconto',
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === 'asc')
+                    }
+                >
+                    Desconto
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
         cell: ({ row }) => `${parseFloat(row.getValue('savings')).toFixed(1)}%`,
     },
     {
         accessorKey: 'dealRating',
-        header: 'Nota',
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === 'asc')
+                    }
+                >
+                    Nota
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            );
+        },
     },
     {
         accessorKey: 'storeName',
