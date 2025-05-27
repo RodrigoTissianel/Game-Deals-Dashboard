@@ -13,3 +13,8 @@ export const getStores = async () => {
     const response = await api.get('/stores');
     return response.data;
 };
+
+export const getGameDetails = async (gameID: string) => {
+    const response = await api.get(`/games?id=${gameID}`);
+    return response.data;
+};

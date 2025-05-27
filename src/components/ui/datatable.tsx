@@ -1,14 +1,17 @@
-import * as React from 'react';
 import {
-    type ColumnDef,
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     getPaginationRowModel,
-    useReactTable,
-    type SortingState,
     getSortedRowModel,
+    useReactTable,
+    type ColumnDef,
+    type ColumnFiltersState,
+    type SortingState,
 } from '@tanstack/react-table';
+import * as React from 'react';
 
+import type { IFiltersType } from '@/@types/FilterSidebar';
 import {
     Table,
     TableBody,
@@ -18,17 +21,24 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { Button } from './button';
+import { Skeleton } from './skeleton';
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
+    filters: IFiltersType;
+    isLoading?: boolean;
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    filters,
+    isLoading,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([]);
+    const [columnFilters, setColumnFilters] =
+        React.useState<ColumnFiltersState>([]);
 
     const table = useReactTable({
         data,
@@ -37,10 +47,20 @@ export function DataTable<TData, TValue>({
         getPaginationRowModel: getPaginationRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        onColumnFiltersChange: setColumnFilters,
         state: {
             sorting,
+            columnFilters,
         },
     });
+
+    React.useEffect(() => {
+        const titleColumn = table.getColumn('title');
+        if (titleColumn) {
+            titleColumn.setFilterValue(filters.search);
+        }
+    }, [filters.search, table]);
 
     return (
         <div>
@@ -66,7 +86,17 @@ export function DataTable<TData, TValue>({
                         ))}
                     </TableHeader>
                     <TableBody>
-                        {table.getRowModel().rows?.length ? (
+                        {isLoading ? (
+                            [...Array(10)].map((_, i) => (
+                                <TableRow key={i}>
+                                    {columns.map((_, j) => (
+                                        <TableCell key={j}>
+                                            <Skeleton className="h-4 w-full bg-gray-200" />
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            ))
+                        ) : table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row) => (
                                 <TableRow
                                     key={row.id}
@@ -90,7 +120,7 @@ export function DataTable<TData, TValue>({
                                     colSpan={columns.length}
                                     className="h-24 text-center"
                                 >
-                                    No results.
+                                    Nenhum resultado encontrado.
                                 </TableCell>
                             </TableRow>
                         )}
