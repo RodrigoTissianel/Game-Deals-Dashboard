@@ -2,6 +2,7 @@ import type { IDeals } from '@/@types/deals';
 import type { IStores } from '@/@types/stores';
 import DealsDataTable from '@/components/DataTable/DealsDataTable';
 import FiltersSidebar from '@/components/Sidebar/FilterSidebar';
+import MobileSidebarDrawer from '@/components/Sidebar/MobileSidebarDrawer';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { getDeals, getStores } from '@/services/api';
 import React from 'react';
@@ -67,15 +68,34 @@ const Home = (): React.ReactElement => {
                 <h1 className="text-4xl font-bold text-indigo-900">
                     Lista de jogos
                 </h1>
-                <FiltersSidebar
-                    stores={activeStores}
-                    filters={filters}
-                    setFilters={setFilters}
-                    minPrice={minPrice}
-                    maxPrice={maxPrice}
-                    minDiscountValue={minDiscountValue}
-                    maxDiscountValue={maxDiscountValue}
-                />
+
+                <p className="text-gray-500 text-[16px] xl:hidden">
+                    Para ver mais informações, deslize a tabela para o lado
+                    esquerdo.
+                </p>
+                <div className="hidden md:block">
+                    <FiltersSidebar
+                        stores={activeStores}
+                        filters={filters}
+                        setFilters={setFilters}
+                        minPrice={minPrice}
+                        maxPrice={maxPrice}
+                        minDiscountValue={minDiscountValue}
+                        maxDiscountValue={maxDiscountValue}
+                    />
+                </div>
+
+                <div className="block md:hidden">
+                    <MobileSidebarDrawer
+                        stores={activeStores}
+                        filters={filters}
+                        setFilters={setFilters}
+                        minPrice={minPrice}
+                        maxPrice={maxPrice}
+                        minDiscountValue={minDiscountValue}
+                        maxDiscountValue={maxDiscountValue}
+                    />
+                </div>
                 <DealsDataTable deals={filteredDeals} filters={filters} />
             </SidebarProvider>
         </main>

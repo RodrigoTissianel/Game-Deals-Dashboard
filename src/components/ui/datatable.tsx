@@ -66,80 +66,83 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <div className="!rounded-lg border border-indigo-400">
-                <Table>
-                    <TableHeader className="bg-indigo-800 border-b border-indigo-500">
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <TableHead
-                                        key={header.id}
-                                        className="text-indigo-50 text-center text-[1rem] font-bold [&>button]:cursor-pointer"
-                                    >
-                                        {header.isPlaceholder
-                                            ? null
-                                            : flexRender(
-                                                  header.column.columnDef
-                                                      .header,
-                                                  header.getContext()
-                                              )}
-                                    </TableHead>
-                                ))}
-                            </TableRow>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {isLoading ? (
-                            [...Array(10)].map((_, i) => (
-                                <TableRow key={i}>
-                                    {columns.map((_, j) => (
-                                        <TableCell key={j}>
-                                            <Skeleton className="h-4 w-full bg-indigo-200" />
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            ))
-                        ) : table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    onClick={() => onRowClick?.(row.original)}
-                                    className="cursor-pointer hover:bg-indigo-100 transition-colors duration-300 border-b border-indigo-400"
-                                >
-                                    {row.getVisibleCells().map((cell) => (
-                                        <TableCell
-                                            key={cell.id}
-                                            className="text-center text-indigo-900 text-[1rem] py-4"
+            <div className="w-full overflow-x-auto">
+                <div className="!rounded-lg border border-indigo-400">
+                    <Table>
+                        <TableHeader className="bg-indigo-800 border-b border-indigo-500 max-sm:overflow-hidden">
+                            {table.getHeaderGroups().map((headerGroup) => (
+                                <TableRow key={headerGroup.id}>
+                                    {headerGroup.headers.map((header) => (
+                                        <TableHead
+                                            key={header.id}
+                                            className="text-indigo-50 text-center text-[1rem] font-bold [&>button]:cursor-pointer"
                                         >
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext()
-                                            )}
-                                        </TableCell>
+                                            {header.isPlaceholder
+                                                ? null
+                                                : flexRender(
+                                                      header.column.columnDef
+                                                          .header,
+                                                      header.getContext()
+                                                  )}
+                                        </TableHead>
                                     ))}
                                 </TableRow>
-                            ))
-                        ) : (
-                            <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    className="h-24 text-center text-indigo-950 text-[1rem]"
-                                >
-                                    Nenhum resultado encontrado.
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
+                            ))}
+                        </TableHeader>
+                        <TableBody>
+                            {isLoading ? (
+                                [...Array(10)].map((_, i) => (
+                                    <TableRow key={i}>
+                                        {columns.map((_, j) => (
+                                            <TableCell key={j}>
+                                                <Skeleton className="h-4 w-full bg-indigo-200" />
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                ))
+                            ) : table.getRowModel().rows?.length ? (
+                                table.getRowModel().rows.map((row) => (
+                                    <TableRow
+                                        key={row.id}
+                                        onClick={() =>
+                                            onRowClick?.(row.original)
+                                        }
+                                        className="cursor-pointer hover:bg-indigo-100 transition-colors duration-300 border-b border-indigo-400"
+                                    >
+                                        {row.getVisibleCells().map((cell) => (
+                                            <TableCell
+                                                key={cell.id}
+                                                className="text-center text-indigo-900 text-[1rem] py-4"
+                                            >
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )}
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell
+                                        colSpan={columns.length}
+                                        className="h-24 text-center text-indigo-950 text-[1rem]"
+                                    >
+                                        Nenhum resultado encontrado.
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
             </div>
 
-            <div className="flex items-center justify-end py-4">
+            <div className="flex items-center gap-3 justify-end py-4 max-sm:flex-col-reverse">
                 <p className="text-md mr-4 text-indigo-900">
                     Página {table.getState().pagination.pageIndex + 1} de{' '}
                     {table.getPageCount()}
                 </p>
-
-                <div className="flex items-center justify-end space-x-2 py-4">
+                <div className="flex justify-start gap-2">
                     <Button
                         variant="outline"
                         size="sm"
