@@ -66,7 +66,7 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <div className="w-full overflow-x-auto">
+            <div className="w-full overflow-x-auto mt-8">
                 <div className="!rounded-lg border border-indigo-400">
                     <Table>
                         <TableHeader className="bg-indigo-800 border-b border-indigo-500 max-sm:overflow-hidden">

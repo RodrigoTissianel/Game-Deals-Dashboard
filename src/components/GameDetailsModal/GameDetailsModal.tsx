@@ -36,14 +36,14 @@ export const GameDetailsModal = ({
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent
-                className="max-w-md bg-indigo-50 border-indigo-400 border-2"
+                className="max-w-md bg-indigo-50 border-indigo-400 border-2 max-[375px]:max-w-3xs max-sm:max-w-86"
                 aria-describedby={undefined}
             >
                 <DialogHeader>
                     {loading ? (
                         <Skeleton className="w-1/2 h-8 rounded bg-indigo-200" />
                     ) : (
-                        <DialogTitle className="text-3xl text-indigo-900 font-bold">
+                        <DialogTitle className="text-3xl text-indigo-900 font-bold max-sm:text-2xl">
                             {game?.title}
                         </DialogTitle>
                     )}
@@ -60,7 +60,7 @@ export const GameDetailsModal = ({
                         <img
                             src={details.info.thumb}
                             alt={details.info.title}
-                            className="w-full rounded h-60 object-fill shadow-lg shadow-indigo-400"
+                            className="w-full rounded h-60 object-fill shadow-lg shadow-indigo-400 max-sm:h-32"
                         />
                         <div>
                             <p className="text-[1rem] mt-4">
@@ -89,7 +89,7 @@ export const GameDetailsModal = ({
                             href={`https://www.cheapshark.com/redirect?dealID=${details.deals?.[0]?.dealID}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-1/2 !mx-auto cursor-pointer mt-2 text-center text-[1rem] bg-indigo-800 text-indigo-50 inline-block py-3 rounded-[8px] transition duration-500 hover:opacity-85 shadow-lg hover:shadow-indigo-300"
+                            className="w-1/2 !mx-auto cursor-pointer mt-2 text-center text-[1rem] bg-indigo-800 text-indigo-50 inline-block py-3 rounded-[8px] transition duration-500 hover:opacity-85 shadow-lg hover:shadow-indigo-300 max-sm:text-[.85rem]"
                         >
                             Ir para oferta
                         </a>

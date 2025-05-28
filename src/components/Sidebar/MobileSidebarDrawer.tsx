@@ -7,7 +7,7 @@ export default function MobileSidebarDrawer(props: IFiltersSidebarProps) {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <Button className="mb-2 border-2 border-indigo-800 text-indigo-900 bg-indigo-50">
+                <Button className="mt-4 border-2 border-indigo-800 text-indigo-900 bg-indigo-50">
                     Abrir filtros
                 </Button>
             </SheetTrigger>
