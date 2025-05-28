@@ -60,7 +60,7 @@ export const GameDetailsModal = ({
                         <img
                             src={details.info.thumb}
                             alt={details.info.title}
-                            className="w-full rounded h-60 object-fill shadow-lg shadow-indigo-400 max-sm:h-32"
+                            className="w-full rounded h-60 object-cover shadow-lg shadow-indigo-400 max-sm:h-32"
                         />
                         <div>
                             <p className="text-[1rem] mt-4">
