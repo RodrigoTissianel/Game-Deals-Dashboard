@@ -7,8 +7,7 @@ CheapShark Games é uma aplicação web que consome a API pública da [CheapShar
 - ✅ Listagem de jogos em promoção com preço e desconto
 - 🔍 Filtros dinâmicos por loja, preço e porcentagem de desconto
 - 🛍️ Detalhamento do jogo em um modal com ofertas por loja
-- 🎮 Design intuitivo com navegação fluida e scroll suave
-- 📱 Layout responsivo com grid flexível e componentes reutilizáveis
+- 📱 Layout responsivo e componentes reutilizáveis
 
 ## 💻 Tecnologias Utilizadas
 
