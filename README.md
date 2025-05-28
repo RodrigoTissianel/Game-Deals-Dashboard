@@ -1,54 +1,54 @@
-# React + TypeScript + Vite
+# 🎮 CheapShark Games
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CheapShark Games é uma aplicação web que consome a API pública da [CheapShark](https://apidocs.cheapshark.com/) para listar e filtrar as melhores ofertas de jogos digitais. A interface é responsiva e otimizada para performance, com foco na experiência do usuário e usabilidade das informações.
 
-Currently, two official plugins are available:
+## 🧠 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ Listagem de jogos em promoção com preço e desconto
+- 🔍 Filtros dinâmicos por loja, preço e porcentagem de desconto
+- 🛍️ Detalhamento do jogo em um modal com ofertas por loja
+- 🎮 Design intuitivo com navegação fluida e scroll suave
+- 📱 Layout responsivo com grid flexível e componentes reutilizáveis
 
-## Expanding the ESLint configuration
+## 💻 Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Vite + React.js** – estrutura moderna e rápida para desenvolvimento
+- **TypeScript** – segurança e legibilidade no código
+- **Tailwind CSS** – estilização com utilitários e responsividade
+- **Radix UI / ShadCN** – componentes acessíveis com estilização personalizável
+- **CheapShark API** – dados em tempo real das promoções
+- **Custom Hooks** – abstração de lógica como filtros e chamadas à API
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📁 Estrutura do Projeto
+
+```bash
+src/
+├── assets/                # Imagens e SVGs
+├── components/            # Componentes reutilizáveis (UI, Sidebar, Card, Modal etc.)
+├── pages/                 # Páginas principais da aplicação
+├── services/              # Configurações de requisições à API
+├── styles/                # Arquivos de estilo e configurações do Tailwind
+├── types/                 # Tipagens TypeScript globais
+└── main.tsx               # Ponto de entrada da aplicação
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Instalação
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Windows, MacOs ou Linux: Por ser um projeto React usando Vite, possui alguns passos a serem seguindos para fazer a instalação:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Abra seu editor de código, indico utilizar o VSCode
+- git clone https://github.com/RodrigoTissianel/Game-Deals-Dashboard.git"
+- npm install ou yarn install
+- npm run dev ou yarn dev
+- Acesse http://localhost:5173 para visualizar a aplicação rodando localmente.
+
+## 📝To-Do Futuro
+
+- Sistema de favoritos com persistência em localStorage
+- Dark mode
+
+## 🚀 Contribuição
+
+1. Veja mais projetos gratuitos no GitHub (<https://github.com/RodrigoTissianel>)
+2. Veja alguns outros projetos no meu portfólio (em manutenção)
+3. Muito obrigado por estar aqui!
