@@ -62,9 +62,11 @@ const Home = (): React.ReactElement => {
     const maxDiscountValue = discounts.length ? Math.max(...discounts) : 100;
 
     return (
-        <div>
+        <main>
             <SidebarProvider className="flex flex-col gap-4">
-                <h1 className="text-4xl font-bold">Lista de jogos</h1>
+                <h1 className="text-4xl font-bold text-indigo-900">
+                    Lista de jogos
+                </h1>
                 <FiltersSidebar
                     stores={activeStores}
                     filters={filters}
@@ -76,7 +78,7 @@ const Home = (): React.ReactElement => {
                 />
                 <DealsDataTable deals={filteredDeals} filters={filters} />
             </SidebarProvider>
-        </div>
+        </main>
     );
 };
 

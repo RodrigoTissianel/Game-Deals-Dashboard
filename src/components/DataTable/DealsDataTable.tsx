@@ -8,27 +8,13 @@ import { ArrowUpDown } from 'lucide-react';
 import { GameDetailsModal } from '../GameDetailsModal/GameDetailsModal';
 
 const DealsDataTable = ({ deals, filters }: IDealsDataTableProps) => {
-    const [selectedGameID, setSelectedGameID] = React.useState<string | null>(
-        null
-    );
-    const [selectedTitle, setSelectedTitle] = React.useState<string>('');
+    const [selectedGame, setSelectedGame] = React.useState<IDeals | null>(null);
     const [modalOpen, setModalOpen] = React.useState(false);
     const columns: ColumnDef<IDeals>[] = [
         {
             accessorKey: 'title',
             header: 'Título',
-            cell: ({ row }) => (
-                <button
-                    className="text-blue-600 underline"
-                    onClick={() => {
-                        setSelectedGameID(row.original.gameID);
-                        setSelectedTitle(row.original.title);
-                        setModalOpen(true);
-                    }}
-                >
-                    {row.getValue('title')}
-                </button>
-            ),
+            cell: ({ row }) => row.getValue('title'),
         },
         {
             accessorKey: 'salePrice',
@@ -127,14 +113,17 @@ const DealsDataTable = ({ deals, filters }: IDealsDataTableProps) => {
             <GameDetailsModal
                 open={modalOpen}
                 onOpenChange={setModalOpen}
-                gameID={selectedGameID}
-                title={selectedTitle}
+                game={selectedGame}
             />
             <DataTable
                 data={deals}
                 columns={columns}
                 filters={filters}
                 isLoading={deals.length === 0}
+                onRowClick={(deal) => {
+                    setSelectedGame(deal);
+                    setModalOpen(true);
+                }}
             />
         </>
     );
